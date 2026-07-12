@@ -58,13 +58,34 @@ FILE_TYPES = {
         ".iso", ".img"
     ],
 
-    "Others": []
 }
 
+def organize_by_name(addres: str, tag_dict: dict):
+    for item in os.listdir(addres):
+            file_name, file_tag = os.path.splitext(item)
+            file_addres = os.path.join(addres, item)
+            
+            for key in tag_dict:
+                tag_list = tag_dict[key]
+                dirc = os.path.join(addres, key)
+                for tag in tag_list:
+                    
+                    if file_tag.lower() == tag:
+                        if not os.path.exists(dirc):
+                            os.mkdir(dirc)
+                            shutil.move(file_addres, dirc)
+                        else:
+                            shutil.move(file_addres, dirc)
 
 if os.path.exists(directory):
+    
     if os.path.isdir(directory):
-        pass
+       
+        organize_by_name(directory, FILE_TYPES)
+                        
+        print("done")
+
+
     else:
         print("addres is file addres")
 
