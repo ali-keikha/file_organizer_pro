@@ -1,0 +1,72 @@
+import os
+import shutil
+
+directory = input("enter directory addres: \n")
+
+FILE_TYPES = {
+    "Images": [
+        ".jpg", ".jpeg", ".png", ".gif", ".bmp",
+        ".webp", ".svg", ".ico", ".tiff", ".heic"
+    ],
+
+    "Videos": [
+        ".mp4", ".mkv", ".avi", ".mov",
+        ".wmv", ".flv", ".webm", ".mpeg"
+    ],
+
+    "Audio": [
+        ".mp3", ".wav", ".aac", ".flac",
+        ".ogg", ".m4a", ".wma"
+    ],
+
+    "Documents": [
+        ".pdf", ".doc", ".docx", ".txt",
+        ".rtf", ".odt", ".md"
+    ],
+
+    "Spreadsheets": [
+        ".xls", ".xlsx", ".csv", ".ods"
+    ],
+
+    "Presentations": [
+        ".ppt", ".pptx", ".odp"
+    ],
+
+    "Archives": [
+        ".zip", ".rar", ".7z",
+        ".tar", ".gz", ".bz2", ".xz"
+    ],
+
+    "Code": [
+        ".py", ".js", ".ts", ".java",
+        ".c", ".cpp", ".cs", ".go",
+        ".rs", ".php", ".html", ".css",
+        ".json", ".xml", ".yaml", ".yml",
+        ".sql", ".sh", ".bat"
+    ],
+
+    "Executables": [
+        ".exe", ".msi", ".apk",
+        ".app", ".deb", ".rpm"
+    ],
+
+    "Fonts": [
+        ".ttf", ".otf", ".woff", ".woff2"
+    ],
+
+    "Disk Images": [
+        ".iso", ".img"
+    ],
+
+    "Others": []
+}
+
+
+if os.path.exists(directory):
+    if os.path.isdir(directory):
+        pass
+    else:
+        print("addres is file addres")
+
+else:
+    print("Directory not found")
