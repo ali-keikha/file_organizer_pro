@@ -1,5 +1,7 @@
 import os
 import shutil
+from pathlib import Path
+from datetime import datetime
 
 directory = input("enter directory addres: \n")
 
@@ -77,17 +79,52 @@ def organize_by_name(addres: str, tag_dict: dict):
                         else:
                             shutil.move(file_addres, dirc)
 
-if os.path.exists(directory):
+def organize_by_date(folder_addres: str):
+    filtered_directory = Path(folder_addres)
     
-    if os.path.isdir(directory):
-       
-        organize_by_name(directory, FILE_TYPES)
-                        
-        print("done")
+    for item in filtered_directory.iterdir():
+        if not item.is_file():
+            continue
+        info = item.stat()
+        date = datetime.fromtimestamp(info.st_ctime)
+        folder_name = date.strftime("%Y-%m")
+        file_directory = os.path.join(folder_addres, folder_name)
+        item_addres = str(item)
+        if not os.path.exists(file_directory):
+            os.mkdir(file_directory)
+            shutil.move(item_addres, file_directory)
+        else:
+            shutil.move(item_addres, file_directory)
 
+
+while True:
+
+    if os.path.exists(directory):
+        
+        if os.path.isdir(directory):
+        
+            option = int(input("Select Option:\n"
+                               "1) File Organize by Type\n"
+                               "2) File Organize by Date\n"
+                               "3) Exit"))
+
+            if option == 1:
+                organize_by_name(directory, FILE_TYPES)
+            elif option == 2:
+                organize_by_date(directory)
+            elif option == 3:
+                break
+            else:
+                print("Ente correct number")
+
+        else:
+            print("addres is file addres")
+            user_answer = input("try again?y/n")
+            if user_answer.lower() == "n":
+                break
 
     else:
-        print("addres is file addres")
-
-else:
-    print("Directory not found")
+        print("Directory not found")
+        user_answer = input("try again?y/n")
+        if user_answer.lower() == "n":
+            break
