@@ -96,6 +96,38 @@ def organize_by_date(folder_addres: str):
         else:
             shutil.move(item_addres, file_directory)
 
+def organize_by_size(file_addres: str):
+    for item in os.listdir(file_addres):
+        item_addres = os.path.join(file_addres, item)
+        if os.path.isdir(item_addres):
+            continue
+        file_size = os.path.getsize(item_addres)
+        
+        file_size = file_size / (1024 * 1024)
+        if file_size <= 10:
+            dir_addres = os.path.join(file_addres, "small")
+            if not os.path.exists(dir_addres):
+                os.mkdir(dir_addres)
+                shutil.move(item_addres, dir_addres)
+            else:
+                shutil.move(item_addres, dir_addres)
+        
+        elif 10 < file_size <= 500:
+            dir_addres = os.path.join(file_addres, "medium")
+            if not os.path.exists(dir_addres):
+                os.mkdir(dir_addres)
+                shutil.move(item_addres, dir_addres)
+            else:
+                shutil.move(item_addres, dir_addres)
+        
+        elif 500 < file_size <= 10000:
+            dir_addres = os.path.join(file_addres, "large")
+            if not os.path.exists(dir_addres):
+                os.mkdir(dir_addres)
+                shutil.move(item_addres, dir_addres)
+            else:
+                shutil.move(item_addres, dir_addres)
+
 
 while True:
 
@@ -106,13 +138,16 @@ while True:
             option = int(input("Select Option:\n"
                                "1) File Organize by Type\n"
                                "2) File Organize by Date\n"
-                               "3) Exit"))
+                               "3) File Organize by Size\n"
+                               "4) Exit\n"))
 
             if option == 1:
                 organize_by_name(directory, FILE_TYPES)
             elif option == 2:
                 organize_by_date(directory)
             elif option == 3:
+                organize_by_size(directory)
+            elif option == 4:
                 break
             else:
                 print("Ente correct number")
