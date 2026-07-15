@@ -63,6 +63,8 @@ FILE_TYPES = {
 }
 
 def organize_by_name(addres: str, tag_dict: dict):
+    report_dict = {}
+    report_list = []
     for item in os.listdir(addres):
             file_name, file_tag = os.path.splitext(item)
             file_addres = os.path.join(addres, item)
@@ -76,8 +78,17 @@ def organize_by_name(addres: str, tag_dict: dict):
                         if not os.path.exists(dirc):
                             os.mkdir(dirc)
                             shutil.move(file_addres, dirc)
+                            report_list.append(item)
+                            report_dict[key] = report_list
                         else:
                             shutil.move(file_addres, dirc)
+                            report_list.append(item)
+                            report_dict[key] = report_list
+                    
+
+    for key in report_dict:
+        file_count = len(report_dict[key])
+        return (f"{key} Count is {file_count}")
 
 def organize_by_date(folder_addres: str):
     filtered_directory = Path(folder_addres)
@@ -129,6 +140,8 @@ def organize_by_size(file_addres: str):
                 shutil.move(item_addres, dir_addres)
 
 
+
+
 while True:
 
     if os.path.exists(directory):
@@ -142,7 +155,7 @@ while True:
                                "4) Exit\n"))
 
             if option == 1:
-                organize_by_name(directory, FILE_TYPES)
+                print(organize_by_name(directory, FILE_TYPES))
             elif option == 2:
                 organize_by_date(directory)
             elif option == 3:
