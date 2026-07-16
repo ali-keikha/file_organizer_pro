@@ -3,7 +3,7 @@ import shutil
 from pathlib import Path
 from datetime import datetime
 
-directory = input("enter directory addres: \n")
+
 
 FILE_TYPES = {
     "Images": [
@@ -144,35 +144,77 @@ def organize_by_size(file_addres: str):
 
 while True:
 
-    if os.path.exists(directory):
-        
-        if os.path.isdir(directory):
-        
-            option = int(input("Select Option:\n"
-                               "1) File Organize by Type\n"
-                               "2) File Organize by Date\n"
-                               "3) File Organize by Size\n"
-                               "4) Exit\n"))
+    directory = input("enter directory addres:(for favorite addres type f) \n").lower()
 
-            if option == 1:
-                print(organize_by_name(directory, FILE_TYPES))
-            elif option == 2:
-                organize_by_date(directory)
-            elif option == 3:
-                organize_by_size(directory)
-            elif option == 4:
-                break
+    if directory == "f":
+        if os.path.exists(favorite_folder):
+            
+            if os.path.isdir(favorite_folder):
+            
+                option = int(input("Select Option:\n"
+                                "1) File Organize by Type\n"
+                                "2) File Organize by Date\n"
+                                "3) File Organize by Size\n"
+                                "4) Exit\n"))
+                                
+
+                if option == 1:
+                    print(organize_by_name(favorite_folder, FILE_TYPES))
+                elif option == 2:
+                    organize_by_date(favorite_folder)
+                elif option == 3:
+                    organize_by_size(favorite_folder)
+                elif option == 4:
+                    break
+    
+                else:
+                    print("Ente correct number")
+
             else:
-                print("Ente correct number")
+                print("addres is file addres")
+                user_answer = input("try again?y/n")
+                if user_answer.lower() == "n":
+                    break
 
         else:
-            print("addres is file addres")
+            print("Directory not found")
             user_answer = input("try again?y/n")
             if user_answer.lower() == "n":
                 break
 
     else:
-        print("Directory not found")
-        user_answer = input("try again?y/n")
-        if user_answer.lower() == "n":
-            break
+    
+        if os.path.exists(directory):
+            
+            if os.path.isdir(directory):
+            
+                option = int(input("Select Option:\n"
+                                "1) File Organize by Type\n"
+                                "2) File Organize by Date\n"
+                                "3) File Organize by Size\n"
+                                "4) Add Favorite Folder\n"
+                                "5) Exit\n"))
+
+                if option == 1:
+                    print(organize_by_name(directory, FILE_TYPES))
+                elif option == 2:
+                    organize_by_date(directory)
+                elif option == 3:
+                    organize_by_size(directory)
+                elif option == 4:
+                    favorite_folder = directory
+    
+                else:
+                    print("Ente correct number")
+
+            else:
+                print("addres is file addres")
+                user_answer = input("try again?y/n")
+                if user_answer.lower() == "n":
+                    break
+
+        else:
+            print("Directory not found")
+            user_answer = input("try again?y/n")
+            if user_answer.lower() == "n":
+                break
