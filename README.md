@@ -1,58 +1,59 @@
-# 📂 File Organizer Pro
+# File Organizer Pro
 
-A command-line application written in Python for organizing files into folders based on different rules.
-
-I built this project to practice working with the file system in Python and to improve my understanding of project structure and clean code by creating a practical utility.
+A simple Python program for organizing files inside a folder.
 
 ## Features
 
-- Organize files by file type
-- Organize files by modification date
-- Organize files by file size
+- Organize files by **file type**
+- Organize files by **creation date**
+- Organize files by **file size**
+- Save a favorite folder for quick access
 
-## Project Structure
+## Supported Categories
 
-```text
-file-organizer-pro/
-│
-├── main.py
-├── organizer.py
-├── README.md
-└── .gitignore
-```
+- Images
+- Videos
+- Audio
+- Documents
+- Spreadsheets
+- Presentations
+- Archives
+- Code
+- Executables
+- Fonts
+- Disk Images
 
-## Getting Started
+## Installation
 
 Clone the repository:
 
 ```bash
-git clone https://github.com/ali-keikha/file-organizer-pro.git
+git clone https://github.com/ali-keikha/File-Organizer-Pro.git
 ```
 
-Navigate to the project directory:
-
-```bash
-cd file-organizer-pro
-```
-
-Run the application:
+Run the program:
 
 ```bash
 python main.py
 ```
 
-## Technologies
+## Menu
 
-- Python 3
-- pathlib
-- shutil
-- os
-- Git
-- GitHub
+```
+1) File Organize by Type
+2) File Organize by Date
+3) File Organize by Size
+4) Add Favorite Folder
+5) Exit
+```
 
-## Future Plans
+## Requirements
 
-- Preview changes before moving files
-- Generate a log of file operations
-- Command-line arguments with argparse
-- Custom organization rules
+- Python 3.10+
+- No external libraries required
+
+## Author
+
+Ali Keikha
+
+GitHub: https://github.com/ali-keikha
