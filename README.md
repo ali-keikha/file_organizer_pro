@@ -51,9 +51,3 @@ python main.py
 
 - Python 3.10+
 - No external libraries required
-
-## Author
-
-Ali Keikha
-
-GitHub: https://github.com/ali-keikha
